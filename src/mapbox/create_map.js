@@ -22,7 +22,8 @@ import mapboxgl from 'mapbox-gl';
             container: id,
             style: style,
             center: pos,
-            zoom: zoom 
+            zoom: zoom,
+            trackResize: true 
         });
     }
     getMap() {
