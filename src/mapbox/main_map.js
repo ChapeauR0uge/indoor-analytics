@@ -73,4 +73,6 @@ map.addControl(new mapboxgl.NavigationControl()); /*Add navigation control*/
 map.addControl(ctrlClear, "bottom-right");
 map.addControl(ctrlAddRandomPts, "bottom-left");
 
+setTimeout(() => map.resize(), 0);
+
 export { addTwoRandomPoints, clear };

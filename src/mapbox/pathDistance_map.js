@@ -22,6 +22,7 @@ mapboxgl.accessToken = token;
 
 map.addControl(new mapboxgl.NavigationControl()); /*Add navigation control*/
 
+setTimeout(() => map.resize(), 0);
 
 
 const referencePath = {
