@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Indoor-Analytics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
+  </head>
+  <body>
+    <div class="doc__bg"></div>
+    <nav class="header">
+      <h1 class="logo">Indoor-Analytics <span class="logo__thin">Doc</span></h1>
+      <ul class="menu">
+        <div class="menu__item toggle"><span></span></div>
+        <li class="menu__item"><a href="" class="link link--dark"><i class="fa fa-github"></i> Github</a></li>
+        <li class="menu__item"><a href="index.html" class="link link--dark"><i class="fa fa-home"></i> Home</a></li>
+      </ul>
+    </nav>
+    <div class="wrapper">
+      <aside class="doc__nav">
+        <ul>
+          <li class="js-btn selected">pathDistance</li>
+        </ul>
+      </aside>
+      <article class="doc__content">
+        <section class="js-section">
+          <div class="doc__content__main">
+            <!-- description section -->
+            <h2 class="section__title">pathDistance</h2>
+            <p>Computes distance between two paths by projecting positions of the second (acquired) path onto the first (reference) one. This allows to compare paths with different location counts.</p>
+            <!--Arguments section-->
+            <h3 class="section__title">Arguments</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th>Arguments</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>referencePath</td>
+                  <td><a target="_blank" href="https://tools.ietf.org/html/rfc7946#section-3.2">Feature</a> &lt;<a target="_blank" href="https://tools.ietf.org/html/rfc7946#section-3.1.4">LineString</a>&gt;</td>
+                  <td>the reference path</td>
+                </tr>
+                <tr>
+                  <td>comparedPath</td>
+                  <td><a target="_blank" href="https://tools.ietf.org/html/rfc7946#section-3.2">Feature</a> &lt;<a target="_blank" href="https://tools.ietf.org/html/rfc7946#section-3.1.4">LineString</a>&gt;</td>
+                  <td>the compared path</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- return section-->
+            <h3 class="section__title">Returns</h3>
+            ErrorVector[] - a vector projection on the reference path
+          </div>
+          <div class="doc__content__map">
+            <div class="map" id="pathDistance-map">
+              <!-- MAP ENTRY POINT-->
+            </div>
+            <div class="npmBadge">
+              npm i --save @indoor-analytics/path-distance
+            </div>
+          </div>
+          <div class="doc__content__example">
+            <h3 class="section__title">Example</h3>
+            <div >
+              <pre >
+                <code class="code code--block">
+                  import {pathDistance} from '@indoor-analytics/path-distance';
+                  import {lineString} from '@turf/helpers';
+
+                  const referencePath = turf.lineString([[3.0206072330474854, 50.63329604535505],[3.020336329936981, 50.63318376106058],[3.0204543471336365, 50.63306297008071],[3.020596504211426, 50.63293792557036],[3.0208204686641693,50.63303064568133],[3.021000176668167, 50.632857964960806],[3.0212053656578064, 50.63294302943444],[3.0210819840431213, 50.63306126879709]]);
+                  const comparedPath = turf.lineString([[3.020470440387726, 50.63340322556774],[3.0203819274902344,50.6333292202089],[3.020383268594742,50.6332790326004],[3.020399361848831,50.633225442383],[3.0203738808631897,50.633172702744346],[3.0204154551029205,50.6331250668908],[3.0205053091049194,50.63306041815525],[3.0206005275249477,50.6329821590406],[3.02072525024414,50.63297025003347],[3.020870089530945,50.63293537363811],[3.0209814012050624,50.63290049721687],[3.021102100610733,50.63287327657741],[3.021216094493866,50.63291070495258],[3.0211490392684937,50.63297280196384],[3.02111953496933,50.633049359809995],[3.0210980772972107,50.63306892457292]]);
+                  
+                  const vectors = pathDistance(referencePath, acquiredPath);
+                </code>
+              </pre>
+            </div>
+           </div>
+        </section>
+      </article>
+    </div>
+  </body>
+</html>
