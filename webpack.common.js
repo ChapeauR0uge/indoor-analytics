@@ -29,12 +29,14 @@ module.exports = {
     plugins: [
       new HtmlWebpackPlugin({
         inject: 'body',
+        scriptLoading: 'blocking',
         chunks: ['index'],
         template: './src/view/index.ejs',
         filename: 'index.html',
       }),
       new HtmlWebpackPlugin({
         inject: 'body',
+        scriptLoading: 'blocking',
         chunks: ['doc'],
         template: './src/view/doc.ejs',
         filename: 'doc.html',

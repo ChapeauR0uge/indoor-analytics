@@ -15,7 +15,7 @@ mapboxgl.accessToken = token;
  * Initialize a mapboxgl Map
  * @param {object} {} - container - style - center - zoom
  */
-const map = new Mapbox({style:"mapbox://styles/mapbox/satellite-v9"}).getMap();
+const map = new Mapbox({style:"mapbox://styles/mapbox/light-v10"}).getMap();
 
 
 

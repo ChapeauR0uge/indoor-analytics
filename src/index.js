@@ -5,5 +5,5 @@ import "./mapbox/main_map.js";
 import "./front-end/scribbler.js";
 
 //import css
-import "/assets/stylesheets/indoor-global.css"
-import "/assets/stylesheets/indoor-landing.css"
+import "/assets/stylesheets/indoor-global.css";
+import "/assets/stylesheets/indoor-landing.css";

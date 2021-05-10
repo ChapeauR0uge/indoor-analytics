@@ -5,5 +5,5 @@ import './mapbox/pathDistance_map.js';
 import './front-end/docs.js'
 
 //import css
-import "/assets/stylesheets/indoor-global.css"
-import "/assets/stylesheets/indoor-doc.css"
+import "/assets/stylesheets/indoor-global.css";
+import "/assets/stylesheets/indoor-doc.css";
