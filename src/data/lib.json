@@ -1,0 +1,25 @@
+{
+    "data": [
+      {
+        "name": "pathDistance",
+        "description": "Computes distance between two paths by projecting positions of the second (acquired) path onto the first (reference) one. This allows to compare paths with different location counts.",
+        "params": [
+          {
+            "arg": "referencePath",
+            "type": "Feature <LineString>",
+            "description": "the reference path"
+          },
+          {
+            "arg": "comparedPath",
+            "type": "Feature <LineString>",
+            "description": "the compared path"
+          }
+        ],
+        "return": {
+          "type": "ErrorVector",
+          "description": "a vector projection on the reference path",
+          "example": {}
+        }
+      }
+    ]
+  }

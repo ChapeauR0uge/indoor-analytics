@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const libJson = require('./src/data/lib.json')
 
 module.exports = {
     entry: {
@@ -24,6 +25,9 @@ module.exports = {
         scriptLoading: 'blocking',
         chunks: ['doc'],
         template: './src/view/doc.ejs',
+        templateParameters: {
+          'json': libJson
+        },
         filename: 'doc.html',
       })
     ],

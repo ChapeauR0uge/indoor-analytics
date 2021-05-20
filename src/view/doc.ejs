@@ -21,15 +21,21 @@
     <div class="wrapper">
       <aside class="doc__nav">
         <ul>
-          <li class="js-btn selected">pathDistance</li>
+          <!--Menu section-->
+          <% json.data.forEach(function(f) { %>
+            <li class="js-btn selected">
+                <%= f.name %>
+            </li>
+          <% }); %>
         </ul>
       </aside>
       <article class="doc__content">
+      <% json.data.forEach(function(f) { %>
         <section class="js-section">
           <div class="doc__content__main">
             <!-- description section -->
-            <h2 class="section__title">pathDistance</h2>
-            <p>Computes distance between two paths by projecting positions of the second (acquired) path onto the first (reference) one. This allows to compare paths with different location counts.</p>
+            <h2 class="section__title"><%= f.name %></h2>
+            <p><%= f.description %> </p>
             <!--Arguments section-->
             <h3 class="section__title">Arguments</h3>
             <table>
@@ -41,24 +47,24 @@
                 </tr>
               </thead>
               <tbody>
+                <% f.params.forEach(function(a) { %>
                 <tr>
-                  <td>referencePath</td>
-                  <td><a target="_blank" href="https://tools.ietf.org/html/rfc7946#section-3.2">Feature</a> &lt;<a target="_blank" href="https://tools.ietf.org/html/rfc7946#section-3.1.4">LineString</a>&gt;</td>
-                  <td>the reference path</td>
+                  <td><%= a.arg %></td>
+                  <td>
+                    <a target="_blank" href="https://tools.ietf.org/html/rfc7946#section-3.1.4">
+                    <%= _.escape(a.type) %>
+                    </a></td>
+                  <td><%= a.description %></td>
                 </tr>
-                <tr>
-                  <td>comparedPath</td>
-                  <td><a target="_blank" href="https://tools.ietf.org/html/rfc7946#section-3.2">Feature</a> &lt;<a target="_blank" href="https://tools.ietf.org/html/rfc7946#section-3.1.4">LineString</a>&gt;</td>
-                  <td>the compared path</td>
-                </tr>
+                <% }); %>
               </tbody>
             </table>
             <!-- return section-->
             <h3 class="section__title">Returns</h3>
-            ErrorVector[] - a vector projection on the reference path
+            <%= f.return.type %> - <%= f.return.description %>
           </div>
           <div class="doc__content__map">
-            <div class="map" id="pathDistance-map">
+            <div class="map" id="<%= f.name %>-map">
               <!-- MAP ENTRY POINT-->
             </div>
             <div class="npmBadge">
@@ -80,8 +86,9 @@
                 </code>
               </pre>
             </div>
-           </div>
+          </div>
         </section>
+        <% }); %>
       </article>
     </div>
   </body>
