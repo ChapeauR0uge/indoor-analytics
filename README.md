@@ -25,7 +25,7 @@
 * Un dossier `front-end`, fichiers `.js` contenant les fonctions relatives au front.
 * Un dossier `view`, fichiers `.ejs` de nos pages web.
 * Un dossier `mapbox`, tout nos fichiers pour la gestion des cartes interactives `mapbox`. 
-
+* Un dossier `data`, contient le fichier `json` qui contient informations de nos packages.
 
 ## Installation :
 
@@ -57,4 +57,36 @@ $ npm run build
 
 // Pour build en temps réel
 $ npm run watch
-```# indoor-analytics-pji.github.io
+```
+
+## Ajout d'une fonction 
+
+Format des informations de nos fonctions :
+
+```json
+    "data": [
+      {
+        "name": "pathDistance", //Nom de la fonction 
+        "pname": "path-distance", // Nom du package
+        "description": "", // Description de la fonction,
+        "params": [ //Liste des arguments de la fonction
+          {
+            "arg": "referencePath", // Nom argument
+            "type": "Feature <LineString>", // Type de l'argument
+            "description": "the reference path" // Description de l'argument
+          },
+          {
+            "arg": "comparedPath",
+            "type": "Feature <LineString>",
+            "description": "the compared path"
+          }
+        ],
+        "return": { // Le retour de la fonction
+          "type": "ErrorVector", // Son type
+          "description": "a vector projection on the reference path", // Sa description
+          "example": {} // L'exmple d'utilisation de la fonction
+        }
+      }
+```
+
+Ces données sont ensuites transmises à notre template `.ejs`.

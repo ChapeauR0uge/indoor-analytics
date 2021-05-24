@@ -18,6 +18,9 @@ module.exports = {
         scriptLoading: 'blocking',
         chunks: ['index'],
         template: './src/view/index.ejs',
+        templateParameters: {
+          'json': libJson
+        },
         filename: 'index.html',
       }),
       new HtmlWebpackPlugin({

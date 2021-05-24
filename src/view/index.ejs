@@ -28,18 +28,34 @@
         <h3 class="section__title">Installation</h3>
         <div class="tab__container">
           <ul class="tab__menu">
-            <li class="tab active" data-tab="pathDistance">pathDistance</li>
+            <!-- Tab section for each package -->
+            <% var i = 0; json.data.forEach(function(f) { %>
+            <% if(i == 0) {%> 
+              <li class="tab active" data-tab="<%= f.name %>"><%= f.name %></li>
+            <% }else{ %>
+              <li class="tab" data-tab="<%= f.name %>"><%= f.name %></li>
+            <% }i++;}); %>
           </ul>
+          <!-- content of each tab-->
           <pre class="nohighlight code">
-            <code class="tab__pane active pathDistance">$  npm i --save @indoor-analytics/path-distance</code>
+            <% var i = 0; json.data.forEach(function(f) {%>
+            <% if(i == 0) {%> 
+              <code class="tab__pane active <%= f.name %>">$  npm i --save @indoor-analytics/<%= f.pname%></code>
+            <% }else{ %>
+              <code class="tab__pane <%= f.name %>">$  npm i --save @indoor-analytics/<%= f.pname%></code>
+            <% } %>
+            <% i++;}); %>
           </pre>
         </div>
       </div>
+      <!-- Feature Zone, one foreach function-->
       <div class="feature">
+        <% json.data.forEach(function(f) { %>
         <div class="feature__item">
-          <h3 class="section__title">pathDistance</h3>
-          <p>Computes distance between two paths by projecting positions of the second (acquired) path onto the first (reference) one. This allows to compare paths with different location counts.</p>
+          <h3 class="section__title"><%= f.name %></h3>
+          <p><%= f.description %></p>
         </div>
+        <% }); %>
       </div>
       <hr>
       <div class="callout">

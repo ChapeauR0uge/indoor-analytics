@@ -2,6 +2,7 @@
     "data": [
       {
         "name": "pathDistance",
+        "pname": "path-distance",
         "description": "Computes distance between two paths by projecting positions of the second (acquired) path onto the first (reference) one. This allows to compare paths with different location counts.",
         "params": [
           {
