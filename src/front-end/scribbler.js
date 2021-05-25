@@ -42,6 +42,9 @@ window.addEventListener("load", function() {
     // apply active classes on desired tab and pane
     clickedTab.classList.add('active');
     activePane.classList.add('active');
+
+    // Change Map name
+    document.getElementById("map_name").innerHTML = clickedTab.getAttribute('data-tab');
   }
 });
 

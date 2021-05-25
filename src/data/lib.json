@@ -21,6 +21,28 @@
           "description": "a vector projection on the reference path",
           "example": {}
         }
+      },
+      {
+        "name": "ClusteringTree",
+        "pname": "multi-path",
+        "description": "Computes average path segments from an ensemble of paths.",
+        "params": [
+          {
+            "arg": "clusteringTreeNode",
+            "type": "ClusteringTreeNode",
+            "description": "tree root node"
+          },
+          {
+            "arg": "depth",
+            "type": "number",
+            "description": "level of tree depth"
+          }
+        ],
+        "return": {
+          "type": "Feature<LineString>[]",
+          "description": " Returns an array of average paths for this tree",
+          "example": {}
+        }
       }
     ]
   }

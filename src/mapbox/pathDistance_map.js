@@ -22,6 +22,7 @@ mapboxgl.accessToken = token;
 
 map.addControl(new mapboxgl.NavigationControl()); /*Add navigation control*/
 
+/** Force css loading */
 setTimeout(() => map.resize(), 0);
 
 
