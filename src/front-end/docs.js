@@ -2,6 +2,9 @@ import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import 'highlight.js/styles/github.css';
 
+/** Function for changing current loaded Map */
+import { removeMap, newCurrentMap } from '../mapbox/map_list.js';
+
 var get = function (selector, scope) {
     scope = scope ? scope : document;
     return scope.querySelector(selector);
@@ -34,11 +37,16 @@ if (btns.length && sections.length > 0) {
 }
 
 function setActiveLink(event) {
+  //Remove currentMap
+  removeMap();
   // remove all active tab classes
   for (var i = 0; i < btns.length; i++) {
     btns[i].classList.remove('selected');
   }
 
+  // Load new Current Map
+  let arg = event.target.innerHTML.replace(/\s/g, '');
+  newCurrentMap(arg);
   event.target.classList.add('selected');
 }
 

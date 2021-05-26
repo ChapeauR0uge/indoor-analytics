@@ -1,5 +1,5 @@
-// MapBox Example
-import './mapbox/pathDistance_map.js';
+// MapBox Example, currentMap loaded
+import './mapbox/map_list.js';
 
 // Front-end
 import './front-end/docs.js'

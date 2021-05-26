@@ -1,3 +1,5 @@
+import { newCurrentMap, removeMap } from "../mapbox/map_list";
+
 // utilities
 var get = function (selector, scope) {
   scope = scope ? scope : document;
@@ -45,9 +47,16 @@ window.addEventListener("load", function() {
 
     // Change Map name
     document.getElementById('map_name').innerHTML = clickedTab.getAttribute('data-tab');
+    
+    // Remove CurrentMap
+    removeMap();
 
     // Change Map id mapbox from index page
     document.getElementsByClassName('map__mapbox')[0].id = clickedTab.getAttribute('data-tab') + '-map';
+
+    // Load New CurrentMap
+    newCurrentMap(clickedTab.getAttribute('data-tab'));
+
   }
 });
 

@@ -1,6 +1,5 @@
-// MapBox Gl 
-import "./mapbox/pathDistance_map.js";
-import "./mapbox/ClusteringTree_map.js";
+// MapBox Gl Example
+import "./mapbox/map_list.js";
 
 // indoor-frontend.js
 import "./front-end/scribbler.js";

@@ -22,11 +22,16 @@
       <aside class="doc__nav">
         <ul>
           <!--Menu section-->
-          <% json.data.forEach(function(f) { %>
+          <% var i = 0; json.data.forEach(function(f) { %>
+            <% if(i == 0) {%> 
             <li class="js-btn selected">
                 <%= f.name %>
             </li>
-          <% }); %>
+            <% }else{ %>
+            <li class="js-btn ">
+                <%= f.name %>
+            </li>
+          <% }i++;}); %>
         </ul>
       </aside>
       <article class="doc__content">
