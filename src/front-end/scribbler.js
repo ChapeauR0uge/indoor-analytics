@@ -44,7 +44,10 @@ window.addEventListener("load", function() {
     activePane.classList.add('active');
 
     // Change Map name
-    document.getElementById("map_name").innerHTML = clickedTab.getAttribute('data-tab');
+    document.getElementById('map_name').innerHTML = clickedTab.getAttribute('data-tab');
+
+    // Change Map id mapbox from index page
+    document.getElementsByClassName('map__mapbox')[0].id = clickedTab.getAttribute('data-tab') + '-map';
   }
 });
 

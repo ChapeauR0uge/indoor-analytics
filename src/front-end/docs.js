@@ -12,25 +12,24 @@ var getAll = function (selector, scope) {
     return scope.querySelectorAll(selector);
 };
 
-//in page scrolling for documentaiton page
+//in page scrolling for documentation page
 var btns = getAll('.js-btn');
 var sections = getAll('.js-section');
 
-function smoothScrollTo(element, event) {
-    setActiveLink(event);
-  
-    window.scrollTo({
-      'behavior': 'smooth',
-      'top': element.offsetTop - 20,
-      'left': 0
-    });
+function smoothScrollTo(i, event) {
+  var element = sections[i];
+  setActiveLink(event);
+
+  window.scrollTo({
+    'behavior': 'smooth',
+    'top': element.offsetTop - 20,
+    'left': 0
+  });
 }
 
 if (btns.length && sections.length > 0) {
     for (var i = 0; i<btns.length; i++) {
-        btns[i].addEventListener('click', function(event) {
-            smoothScrollTo(sections[i], event);
-        });
+      btns[i].addEventListener('click', smoothScrollTo.bind(this,i));
     }
 }
 
@@ -42,6 +41,7 @@ function setActiveLink(event) {
 
   event.target.classList.add('selected');
 }
+
 
 /* Higlight JS: for javascript */
 hljs.registerLanguage('javascript', javascript);
