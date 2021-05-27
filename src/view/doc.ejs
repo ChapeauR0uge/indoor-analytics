@@ -42,32 +42,64 @@
             <h2 class="section__title"><%= f.name %></h2>
             <p><%= f.description %> </p>
             <!--Arguments section-->
-            <h3 class="section__title">Arguments</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Arguments</th>
-                  <th>Type</th>
-                  <th>Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% f.params.forEach(function(a) { %>
-                <tr>
-                  <td><%= a.arg %></td>
-                  <td>
-                    <a target="_blank" href="https://tools.ietf.org/html/rfc7946#section-3.1.4">
-                    <%= _.escape(a.type) %>
-                    </a></td>
-                  <td><%= a.description %></td>
-                </tr>
-                <% }); %>
-              </tbody>
-            </table>
+            <% if(f.params != null){ %>
+              <h3 class="section__title">Arguments</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Arguments</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% f.params.forEach(function(a) { %>
+                  <tr>
+                    <td><%= a.arg %></td>
+                    <td>
+                      <a target="_blank" href="https://tools.ietf.org/html/rfc7946#section-3.1.4">
+                      <%= _.escape(a.type) %>
+                      </a></td>
+                    <td><%= a.description %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            <%}%>
+            <!-- Options section -->
+            <% if(f.options != null){ %>
+              <h3 class="section__title">Options</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Prop</th>
+                    <th>Type</th>
+                    <th>Default</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% f.params.forEach(function(a) { %>
+                  <tr>
+                    <td><%= a.arg %></td>
+                    <td>
+                      <a target="_blank" href="https://tools.ietf.org/html/rfc7946#section-3.1.4">
+                      <%= _.escape(a.type) %>
+                      </a></td>
+                    <td><%= a.default %> </td>
+                    <td><%= a.description %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            <%}%>
             <!-- return section-->
-            <h3 class="section__title">Returns</h3>
-            <%= f.return.type %> - <%= f.return.description %>
+            <% if(f.return != null) {%> 
+              <h3 class="section__title">Returns</h3>
+              <%= f.return.type %> - <%= f.return.description %>
+            <% } %> 
           </div>
+          <!-- map Section-->
           <div class="doc__content__map">
             <div class="map" id="<%= f.name %>-map">
               <!-- MAP ENTRY POINT-->
@@ -76,22 +108,19 @@
               npm i --save @indoor-analytics/<%= f.pname %> 
             </div>
           </div>
-          <div class="doc__content__example">
-            <h3 class="section__title">Example</h3>
-            <div >
-              <pre >
-                <code class="code code--block">
-                  import {pathDistance} from '@indoor-analytics/path-distance';
-                  import {lineString} from '@turf/helpers';
+          <!-- example Section-->
+          <% if(f.example != null) {%> 
+            <div class="doc__content__example">
+              <h3 class="section__title">Example</h3>
+              <div >
+                <pre >
+                  <code class="code code--block">
 
-                  const referencePath = turf.lineString([[3.0206072330474854, 50.63329604535505],[3.020336329936981, 50.63318376106058],[3.0204543471336365, 50.63306297008071],[3.020596504211426, 50.63293792557036],[3.0208204686641693,50.63303064568133],[3.021000176668167, 50.632857964960806],[3.0212053656578064, 50.63294302943444],[3.0210819840431213, 50.63306126879709]]);
-                  const comparedPath = turf.lineString([[3.020470440387726, 50.63340322556774],[3.0203819274902344,50.6333292202089],[3.020383268594742,50.6332790326004],[3.020399361848831,50.633225442383],[3.0203738808631897,50.633172702744346],[3.0204154551029205,50.6331250668908],[3.0205053091049194,50.63306041815525],[3.0206005275249477,50.6329821590406],[3.02072525024414,50.63297025003347],[3.020870089530945,50.63293537363811],[3.0209814012050624,50.63290049721687],[3.021102100610733,50.63287327657741],[3.021216094493866,50.63291070495258],[3.0211490392684937,50.63297280196384],[3.02111953496933,50.633049359809995],[3.0210980772972107,50.63306892457292]]);
-                  
-                  const vectors = pathDistance(referencePath, acquiredPath);
-                </code>
-              </pre>
+                  </code>
+                </pre>
+              </div>
             </div>
-          </div>
+          <% } %> 
         </section>
         <% }); %>
       </article>

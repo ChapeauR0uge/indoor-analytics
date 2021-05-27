@@ -31,29 +31,52 @@
         <h3 class="section__title">Installation</h3>
         <div class="tab__container">
           <ul class="tab__menu">
-            <!-- Tab section for each package -->
-            <% var i = 0; json.data.forEach(function(f) { %>
+            <!-- Tab section for each main_package -->
+            <% var i = 0; json.data
+            .filter(function(f){
+              return f.main_package;
+            })
+            .forEach(function(f) { %>
             <% if(i == 0) {%> 
               <li class="tab active" data-tab="<%= f.name %>"><%= f.name %></li>
             <% }else{ %>
               <li class="tab" data-tab="<%= f.name %>"><%= f.name %></li>
             <% }i++;}); %>
           </ul>
-          <!-- content of each tab-->
+
+          <!-- content of each tab for each main_package-->
           <pre class="nohighlight code">
-            <% var i = 0; json.data.forEach(function(f) {%>
+            <% var i = 0; json.data
+            .filter(function(f){
+              return f.main_package;
+            })
+            .forEach(function(f) {%>
             <% if(i == 0) {%> 
-              <code class="tab__pane active <%= f.name %>">$  npm i --save @indoor-analytics/<%= f.pname%></code>
+              <code class="tab__pane active <%= f.name %>">
+                //Add this line to ~/.npmrc to set up the package registry:<br>
+                @indoor-analytics:registry=https://npm.pkg.github.com/indoor-analytics<br>
+                <br>
+                $  npm i --save @indoor-analytics/<%= f.pname%><br>
+              </code>
             <% }else{ %>
-              <code class="tab__pane <%= f.name %>">$  npm i --save @indoor-analytics/<%= f.pname%></code>
+              <code class="tab__pane <%= f.name %>">
+                //Add this line to ~/.npmrc to set up the package registry:<br>
+                @indoor-analytics:registry=https://npm.pkg.github.com/indoor-analytics<br>
+                <br>
+                $  npm i --save @indoor-analytics/<%= f.pname%><br>
+              </code>
             <% } %>
             <% i++;}); %>
           </pre>
         </div>
       </div>
-      <!-- Feature Zone, one foreach function-->
+      <!-- Feature Zone, one foreach main_package-->
       <div class="feature">
-        <% json.data.forEach(function(f) { %>
+        <% json.data
+        .filter(function(f){
+          return f.main_package;
+        })
+        .forEach(function(f) { %>
         <div class="feature__item">
           <h3 class="section__title"><%= f.name %></h3>
           <p><%= f.description %></p>

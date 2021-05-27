@@ -47,6 +47,7 @@ function setActiveLink(event) {
   // Load new Current Map
   let arg = event.target.innerHTML.replace(/\s/g, '');
   newCurrentMap(arg);
+  
   event.target.classList.add('selected');
 }
 

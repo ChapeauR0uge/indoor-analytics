@@ -122,6 +122,7 @@ html, body {
 /* section */
 .js-section {
   border:1px solid var(--span-color);
+  width: 100%;
   padding:30px;
   background-color: var(--section-color);
   margin-top:10px;

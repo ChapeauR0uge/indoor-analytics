@@ -2,6 +2,7 @@
     "data": [
       {
         "name": "pathDistance",
+        "main_package": true,
         "pname": "path-distance",
         "description": "Computes distance between two paths by projecting positions of the second (acquired) path onto the first (reference) one. This allows to compare paths with different location counts.",
         "params": [
@@ -16,14 +17,16 @@
             "description": "the compared path"
           }
         ],
+        "options": null,
         "return": {
           "type": "ErrorVector",
-          "description": "a vector projection on the reference path",
-          "example": {}
-        }
+          "description": "a vector projection on the reference path"
+        },
+        "example": "pathDistance"
       },
       {
         "name": "ClusteringTree",
+        "main_package":true,
         "pname": "multi-path",
         "description": "Computes average path segments from an ensemble of paths.",
         "params": [
@@ -38,10 +41,22 @@
             "description": "level of tree depth"
           }
         ],
+        "options": null,
         "return": {
           "type": "Feature<LineString>[]",
-          "description": " Returns an array of average paths for this tree",
-          "example": {}
+          "description": " Returns an array of average paths for this tree"
+        }
+      },
+      {
+        "name": "Example ",
+        "main_package":false,
+        "pname": "multi-path",
+        "description": "Lixesum ad viterem lux viteus epicuriem sin cos dalem descriptum ad rum",
+        "params": null,
+        "options": null,
+        "return": {
+          "type": "Qpitacure>[]",
+          "description": " Returnaem cafernaem sin ad papalum"
         }
       }
     ]
