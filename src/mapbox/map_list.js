@@ -3,8 +3,9 @@ import PathDistanceMap from './pathDistanceMap.js';
 import ClusteringTreeMap from './ClusteringTreeMap.js'; // TODO: Just for test now
 
 /* Location for exemple*/
-import { euratechPath1, euratechPath2 } from '../data/paths';
-import { euratechPos, lillePos } from '../data/centerPosition';
+import { euratechPath1, euratechPath2, lilleFlanderWalkwayPaths } from '../data/paths';
+import { euratechPos, lilleFlandreRailway } from '../data/centerPosition';
+import { actualFlandersRailway } from '../data/zones.js';
 
 /*Default loading, because PathDistance Map always first to load in both pages*/
 let currentMap = new PathDistanceMap({
@@ -27,7 +28,9 @@ export function newCurrentMap(arg) {
         }).getMap();
     }else if("ClusteringTree" === arg){
         currentMap = new ClusteringTreeMap({
-            center: lillePos
+            zoi: actualFlandersRailway,
+            paths: lilleFlanderWalkwayPaths,
+            center: lilleFlandreRailway
         }).getMap();
     }else{
         console.log("ERROR MAP NOT FOUND");
