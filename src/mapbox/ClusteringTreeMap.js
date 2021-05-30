@@ -93,4 +93,11 @@ export default class ClusteringTreeMap {
     getMap() {
         return this._map;
     }
+
+    /**
+     * Generate Menu for html.
+     */
+    toHTML(){
+        let menu = "<";
+    }
 }

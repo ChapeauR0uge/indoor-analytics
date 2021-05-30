@@ -3,7 +3,7 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import 'highlight.js/styles/github.css';
 
 /** Function for changing current loaded Map */
-import { removeMap, newCurrentMap } from '../mapbox/map_list.js';
+import { newCurrentMap } from '../mapbox/map_list.js';
 
 var get = function (selector, scope) {
     scope = scope ? scope : document;
@@ -37,8 +37,7 @@ if (btns.length && sections.length > 0) {
 }
 
 function setActiveLink(event) {
-  //Remove currentMap
-  removeMap();
+
   // remove all active tab classes
   for (var i = 0; i < btns.length; i++) {
     btns[i].classList.remove('selected');
