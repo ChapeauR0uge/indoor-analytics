@@ -1,0 +1,9 @@
+import { ClusteringTree } from '@indoor-analytics/multi-path'; <br>
+import { lilleFlandreRailway } from './data/centerPosition';
+import { actualFlandersRailway } from './data/zones.js';
+<br>
+let depth = 1;<br>
+<br>
+/* create map */ <br>
+const tmap = ClusteringTree.create(actualFlandersRailway, lilleFlandreRailway,depth); <br>
+<br>

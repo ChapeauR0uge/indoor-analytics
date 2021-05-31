@@ -66,26 +66,31 @@ Format des informations de nos fonctions :
 ```json
     "data": [
       {
-        "name": "pathDistance", //Nom de la fonction 
-        "pname": "path-distance", // Nom du package
-        "description": "", // Description de la fonction,
+        "name": "pathDistance", //Nom de la fonction :String
+        "pname": "path-distance", // Nom du package : String
+        "description": "", // Description de la fonction : String
+        "map":true, // Boolean
         "params": [ //Liste des arguments de la fonction
           {
             "arg": "referencePath", // Nom argument
             "type": "Feature <LineString>", // Type de l'argument
             "description": "the reference path" // Description de l'argument
-          },
+          }
+        ],
+        "options": [ // Liste des options de la fonction
           {
-            "arg": "comparedPath",
-            "type": "Feature <LineString>",
-            "description": "the compared path"
+            "arg": "", // Nom option : String
+            "type": "", // Type de l'option :String
+            "default": "", // Valeur par défault :String
+            "description": "" // Description de l'option
           }
         ],
         "return": { // Le retour de la fonction
-          "type": "ErrorVector", // Son type
-          "description": "a vector projection on the reference path", // Sa description
-          "example": {} // L'exmple d'utilisation de la fonction
-        }
+          "type": "ErrorVector", // Son type :String
+          "description": "a vector projection on the reference path" // Sa description :String
+        },
+        "example": "pathDistance", // Nom du fichier de l'exemple, fichier se trouvant dans ./view/partials/examples/<nom_fichier_example>.html
+        "af": "" // Nim du fichier qui contient la description de l'Algorithme Factorization, fichier se trouvant dans ./view/partials/af/<nom_fichier_example>.html
       }
 ```
 

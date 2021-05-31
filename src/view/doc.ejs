@@ -37,6 +37,8 @@
       <article class="doc__content">
       <% json.data.forEach(function(f) { %>
         <section class="js-section">
+          <!-- FONCTION -->
+          <% if (f.fonction) { %> 
           <div class="doc__content__main">
             <!-- description section -->
             <h2 class="section__title"><%= f.name %></h2>
@@ -101,9 +103,13 @@
           </div>
           <!-- map Section-->
           <div class="doc__content__map">
-            <div class="map" id="<%= f.name %>-map">
-              <!-- MAP ENTRY POINT-->
-            </div>
+            <% if(f.map) { %> 
+              <div class="map" id="<%= f.name %>-map">
+                <!-- MAP ENTRY POINT-->
+              </div>
+            <% } else { %>
+              <div class="empty"></div>
+            <% } %>
             <div class="npmBadge">
               npm i --save @indoor-analytics/<%= f.pname %> 
             </div>
@@ -115,12 +121,141 @@
               <div >
                 <pre >
                   <code class="code code--block">
-                    <%=  require('./partials/examples/pathDistance.html').default %>
+                    <%=  require('./partials/examples/'+f.example+'.html').default %>
                   </code>
                 </pre>
               </div>
             </div>
           <% } %> 
+           <!-- Algorithme Factorization Section-->
+           <% if(f.af != null) {%> 
+            <div class="doc__content__example">
+              <h3 class="section__title">Algorithm Formalization</h3>
+              <div >
+                  <%=  require('./partials/af/'+f.af+'.html').default %>
+              </div>
+            </div>
+          <% } %>
+        <% } else { %>
+          <!-- CLASSE -->
+          <div class="doc__content__main">
+            <!-- description section -->
+            <h2 class="section__title"><%= f.name %></h2>
+            <p><%= f.description %> </p>
+            <!--Constructor section-->
+            <% if(f.constructor != null){ %>
+              <h3 class="section__title">new <%= f.name %>(
+                <% let i = 0; f.constructor.params.forEach(function(a){ %>
+                  <% if(i == (f.constructor.params.length-1)){ %>
+                     <%= a.arg %> 
+                  <% } else {%>
+                    <%= a.arg %>, 
+                <% }i++;}); %>
+              )</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% f.constructor.params.forEach(function(a) { %>
+                  <tr>
+                    <td><%= a.arg %></td>
+                    <td>
+                      <%= _.escape(a.type) %>
+                      </a></td>
+                    <td><%= a.description %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            <%}%>
+            <!--Members section-->
+            <% if(f.members != null){ %>
+              <h3 class="section__title">Members</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% f.members.forEach(function(a) { %>
+                  <tr>
+                    <td><%= a.name %></td>
+                    <td>
+                      <%= _.escape(a.type) %>
+                      </a></td>
+                    <td><%= a.description %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            <%}%>
+            <!--Methods section-->
+            <% if(f.methods != null){ %>
+              <h3 class="section__title">Methods</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% f.methods.forEach(function(a) { %>
+                  <tr>
+                    <td><%= a.name %></td>
+                    <td>
+                      <%= _.escape(a.type) %>
+                      </a></td>
+                    <td><%= a.description %></td>
+                  </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            <%}%>
+          </div>
+          <!-- map Section-->
+          <div class="doc__content__map">
+            <% if(f.map) { %> 
+              <div class="map" id="<%= f.name %>-map">
+                <!-- MAP ENTRY POINT-->
+              </div>
+            <% } else { %>
+              <div class="empty"></div>
+            <% } %>
+            <div class="npmBadge">
+              npm i --save @indoor-analytics/<%= f.pname %> 
+            </div>
+          </div>
+          <!-- example Section-->
+          <% if(f.example != null) {%> 
+            <div class="doc__content__example">
+              <h3 class="section__title">Example</h3>
+              <div >
+                <pre >
+                  <code class="code code--block">
+                    <%=  require('./partials/examples/'+f.example+'.html').default %>
+                  </code>
+                </pre>
+              </div>
+            </div>
+          <% } %> 
+           <!-- Algorithme Factorization Section-->
+           <% if(f.af != null) {%> 
+            <div class="doc__content__example">
+              <h3 class="section__title">Algorithm Formalization</h3>
+              <div >
+                  <%=  require('./partials/af/'+f.af+'.html').default %>
+              </div>
+            </div>
+          <% } %>
+        <% } %> 
         </section>
         <% }); %>
       </article>

@@ -2,8 +2,10 @@
     "data": [
       {
         "name": "pathDistance",
-        "main_package": true,
+        "main_package":true,
+        "fonction": true,
         "pname": "path-distance",
+        "map": true,
         "description": "Computes distance between two paths by projecting positions of the second (acquired) path onto the first (reference) one. This allows to compare paths with different location counts.",
         "params": [
           {
@@ -22,42 +24,81 @@
           "type": "ErrorVector",
           "description": "a vector projection on the reference path"
         },
-        "example": "pathDistanceExample"
+        "example": "pathDistance",
+        "af": "pathDistance"
       },
       {
         "name": "ClusteringTree",
         "main_package":true,
+        "fonction":false,
         "pname": "multi-path",
+        "map":true,
         "description": "Computes average path segments from an ensemble of paths.",
-        "params": [
+        "constructor":{
+          "params": [
+            {
+              "arg": "clusteringTreeNode",
+              "type": "ClusteringTreeNode",
+              "description": "tree root node"
+            },
+            {
+              "arg": "depth",
+              "type": "number",
+              "description": "level of tree depth"
+            }
+          ]
+        },
+        "members":[
           {
-            "arg": "clusteringTreeNode",
-            "type": "ClusteringTreeNode",
-            "description": "tree root node"
+            "name":"root",
+            "type":"ClusteringTreeNode",
+            "description":"-"
+          }
+        ],
+        "methods":[
+          {
+            "name": "toFeatureCollection( exportOriginalPaths, exportZonesOfInterest )"
           },
           {
-            "arg": "depth",
-            "type": "number",
-            "description": "level of tree depth"
+            "name": "extractAveragePaths()"
+          },
+          {
+            "name": "create(zoneOfInterest, paths, depth )"
           }
         ],
         "options": null,
         "return": {
           "type": "Feature<LineString>[]",
           "description": " Returns an array of average paths for this tree"
-        }
+        },
+        "example": "clusteringTree",
+        "af": null
       },
       {
-        "name": "Example ",
-        "main_package":false,
+        "name": "toFeatureCollection",
+        "fonction":true,
         "pname": "multi-path",
-        "description": "Lixesum ad viterem lux viteus epicuriem sin cos dalem descriptum ad rum",
-        "params": null,
+        "map":false,
+        "description": "The returned collection only contains average paths by default; input paths and zones of interest can be included as well.",
+        "params": [
+          {
+            "arg": "exportOriginalPaths",
+            "type": "boolean",
+            "description": "should export input paths"
+          },
+          {
+            "arg": "exportZonesOfInterest",
+            "type": "boolean",
+            "description": "should export zones of interest"
+          }
+        ],
         "options": null,
         "return": {
-          "type": "Qpitacure>[]",
-          "description": " Returnaem cafernaem sin ad papalum"
-        }
+          "type": "Feature<LineString>[]",
+          "description": " Returns a collection of features from leaf nodes"
+        },
+        "example": null,
+        "af": null
       }
     ]
   }

@@ -42,8 +42,6 @@ export default class ClusteringTreeMap {
             //Export Feature collection
             const feature = tmap.toFeatureCollection(true, true);
 
-            console.log(feature);
-
             /** Add control */
             this._map.addControl(new mapboxgl.NavigationControl()); /*Add navigation control*/
             

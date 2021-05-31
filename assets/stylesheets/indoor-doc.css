@@ -110,9 +110,15 @@ html, body {
   width: auto;
   height: auto;
   min-height: 500px;
+  border: 1px solid var(--accent-color);
+  border-bottom: 0;
 }
 
-.doc__content__exemple {
+.empty {
+  min-height: 20px;
+}
+
+.doc__content__example {
   position: relative;
   display: block;
   width: 100%;
