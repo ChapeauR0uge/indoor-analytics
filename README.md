@@ -2,7 +2,7 @@
 
 Réaliser dans le cadre du PJI 2021 du Master Informatique de l'Université de Lille.
 
-Website deployé à l'adresse suivante:
+Website déployé à l'adresse suivante:
 
 https://chapeaur0uge.github.io/indoor-analytics/
 
@@ -19,7 +19,7 @@ https://github.com/indoor-analytics
     * La bibliothèque `Turf.js` pour la manipulation d'object `GeoGSON`.
     * La bibliothèque `Indoor-Analytics` pour la présentation de celle-ci + démo.
 
-* **DEVELOPPEMENT**:
+* **DÉVELOPPEMENT**:
     * `Webpack v5` pour la bundlelisation de tout nos fichier css + html + js.
     * Le plugin `mini-css-extract-plugin` et `style-loader` pour une bundlelisation des fichiers CSS.
     * Le plugin `html-loader` et `html-webpack-plugin` pour la génération dynamique de nos pages web.
@@ -136,7 +136,7 @@ Format des informations de nos fonctions et/ou classes dans le fichier `lib.json
         ],
         "methods":[ // Liste des methodes de la classe
           {
-            "name": "extractAveragePaths()" // Nom de la methode de la classe
+            "name": "extractAveragePaths()" // Nom de la méthode de la classe
           }
         ],
         "example": "pathDistance", // Nom du fichier de l'exemple, fichier se trouvant dans ./view/partials/examples/<nom_fichier_example>.html
@@ -145,4 +145,4 @@ Format des informations de nos fonctions et/ou classes dans le fichier `lib.json
 ```
 * Il ne faut bien sur pas oublier de documenter, les méthodes des classes, pour ce faire il suffit d'utiliser le json à la suite du json de la classe (voir `lib.json`).
 
-Ces données sont ensuites transmises à notre template `.ejs`.
+Ces données sont ensuite transmises à notre template `.ejs`.
