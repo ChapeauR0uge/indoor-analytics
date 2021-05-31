@@ -337,7 +337,7 @@ export function newCurrentMap(arg) {
 }
 ``` 
 
-6. Lancer de la génération du mode production
+1. Lancement du mode production
 ```bash
 $ npm run build
 ```
