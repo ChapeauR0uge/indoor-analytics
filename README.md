@@ -59,17 +59,19 @@ $ npm run build
 $ npm run watch
 ```
 
-## Ajout d'une fonction 
+## Ajout d'une fonction et/ou classe 
 
-Format des informations de nos fonctions :
+Format des informations de nos fonctions et/ou classes dans le fichier `lib.json`:
+* Si c'est une fonction, comme "pathDistance" par exemple.
 
 ```json
     "data": [
       {
         "name": "pathDistance", //Nom de la fonction :String
+        "main_package":true, // Permet l'affichage ou non sur la page landing, seul les main_packages seront affichés. : Boolean 
         "pname": "path-distance", // Nom du package : String
         "description": "", // Description de la fonction : String
-        "map":true, // Boolean
+        "map":true, // Affichage ou non d'une map :Boolean
         "params": [ //Liste des arguments de la fonction
           {
             "arg": "referencePath", // Nom argument
@@ -93,5 +95,42 @@ Format des informations de nos fonctions :
         "af": "" // Nim du fichier qui contient la description de l'Algorithme Factorization, fichier se trouvant dans ./view/partials/af/<nom_fichier_example>.html
       }
 ```
+
+* Si c'est une classe, comme "ClusteringTree" par example:
+
+```json
+    "data": [
+      {
+        "name": "ClusteringTree", //Nom de la classe :String
+        "main_package":true, // Permet l'affichage ou non sur la page landing, seul les main_packages seront affichés. : Boolean 
+        "pname": "multi-path", // Nom du package : String
+        "description": "", // Description de la classe : String
+        "map":true, // Affichage ou non d'une map :Boolean
+        "constructor":{ 
+          "params": [ //Liste des arguments du constructeur
+            {
+              "arg": "", // Nom argument
+              "type": "", // Type de l'argument
+              "description": "" // Description de l'argument
+            }
+          ]
+        },
+        "members": [ // Liste des attributs de la classe
+          {
+            "name": "", // Nom attribut :String
+            "type": "", // Type de l'attribut :String
+            "description": "" // Description de l'attribut :String
+          }
+        ],
+        "methods":[ // Liste des methodes de la classe
+          {
+            "name": "extractAveragePaths()" // Nom de la methode de la classe
+          }
+        ],
+        "example": "pathDistance", // Nom du fichier de l'exemple, fichier se trouvant dans ./view/partials/examples/<nom_fichier_example>.html
+        "af": "" // Nim du fichier qui contient la description de l'Algorithme Factorization, fichier se trouvant dans ./view/partials/af/<nom_fichier_example>.html
+      }
+```
+* Il ne faut bien sur pas oublier de documenter, les méthodes des classes, pour ce faire il suffit d'utiliser, le json à la suite du json de la classe.
 
 Ces données sont ensuites transmises à notre template `.ejs`.
