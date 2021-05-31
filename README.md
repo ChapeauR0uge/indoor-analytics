@@ -151,11 +151,11 @@ Ces données sont ensuite transmises à notre template `.ejs`.
 
 ## Tutoriel Ajout d'un package fictif.
 
-Imaginons que j'ai un package npm que je vais appeler `random-path` qui se situe par example ici: `indoor-analytics/random-path`.
+Imaginons que j'ai un package npm que je vais appeler `random-path` qui se situe par exemple ici: `indoor-analytics/random-path`.
 
-Dans ce package, j'ai la fonction `randomPath`, qui me renvoie un path aléatoire entre inclus dans une zoi.
+Dans ce package, j'ai la fonction `randomPath`, qui me renvoie un path aléatoire inclus dans une zoi.
 
-1. Écriture de son dans le fichier `lib.json`:
+1. Écriture des informations dans le fichier `lib.json`:
    ```javascript
    {
     "data": [
@@ -195,7 +195,7 @@ const zoi = "euratechZoi";<br>
 const path = pathExample(zoi);
 <br>
 ``` 
-3. Éventuellement je peux faire la même chose avec l'Algorithm Factorization dans `./view/partials/af`. (mais pas pour l'example)
+3. Éventuellement je peux faire la même chose avec l'Algorithm Factorization dans `./view/partials/af`. (mais pas pour l'exemple)
 4. Création de la carte (Falcultatif), ici dans le dossier `mapbox` je crée le fichier `randomPathMap.js`:
 ```javascript
 import { token } from './token.js';
