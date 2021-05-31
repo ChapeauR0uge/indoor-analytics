@@ -162,7 +162,7 @@ Il y a un outils magique qui s'appel `Webapack`, celui-ci nous permet une "bundl
 La première chose que je fais, c'est de consulter la doc officiel: 
 * https://webpack.js.org/concepts/
 
-Lorsque j'écris ce rendu, j'utilise `webpack 5`, celui-ci change pas mal de chose par rapport à `webpack 4`, j'ai donc mis beaucoup de temps à comprendre certaines choses.
+Lorsque j'écris ce rendu, j'utilise `webpack 5`, celui-ci change pas mal de choses par rapport à `webpack 4`, j'ai donc mis beaucoup de temps à comprendre certains concepts.
 
 Dans un premier temps, j'écris un fichier `JS` par chaque page:
 * `index.js` contient les dependences pour index.html
@@ -238,3 +238,146 @@ $ npm start build
 Pour resumé, la mise en place de webpack, n'est pas "user-friendly" et demande pas mal de temps et de tests, pour comprendre plusieurs concepts.
 
 Je reviendrai dessus lorsque j'aborderai la génération de pages `HTML`. 
+
+---
+### partie 5: Génération des pages HTML - **15hr**
+---
+
+Jusqu'à maintenant, les pages `HTML` étaient ecrites directement en brut, mais ajouté une nouvelle fonction/classe rendait les choses compliquées.
+
+J'ai longtemps cherché, et j'ai trouvé la solution magique avec `webpack`. 
+En effet existe un module `HtmlWebpackPlugin`, qui prend en paramètre un fichier [template `.ejs`](https://ejs.co/), et qui génère un fichier `.html` issu de ce template, et de ses différents paramètres.
+* https://github.com/jantimon/html-webpack-plugin
+
+Avant d'aborder le fonctionement d'`ejs`, il faut savoir que je passe un fichier json en paramètre d'`HtmlWebpackPlugin`, le fichier `lib.json` contient toutes les informations des fonctions de la librairie `indoor-analytics`.
+
+Donc dans notre fichier `webpack.config.js`, j'ajoute :
+```javascript
+...
+const libJson = require('./src/data/lib.json');
+
+module.exports = {
+    ...
+    plugins: [ // Un html-plugin pour chaques pages 
+      new HtmlWebpackPlugin({
+        inject: 'body', // l'endroit ou j'injecte mon bundle js 
+        scriptLoading: 'blocking',
+        chunks: ['index'], // Nom du bundle js
+        template: './src/view/index.ejs', // Template .ejs pour la page
+        templateParameters: {
+          'json': libJson //L'endroi ou j'injecte mon json pour le template .ejs
+        },
+        filename: 'index.html', // Nom du fichier html généré.
+      }),
+      new HtmlWebpackPlugin({
+        inject: 'body',
+        scriptLoading: 'blocking',
+        chunks: ['doc'],
+        template: './src/view/doc.ejs',
+        templateParameters: {
+          'json': libJson,
+        },
+        filename: 'doc.html',
+      })
+    ],
+    ...
+};
+```
+
+Maintenant que nous savons, voyons comment `.ejs` fonctionne.
+
+Grace aux balises, nous pouvons ecrire du javascript dans notre `.ejs`:
+* `<% %>` evalue du javascrite
+* `<%= %>` interprètre le contenue d'une variable et la transforme html.
+
+Voici, un exemple avec la génération de paramètres:
+```html
+<!--Arguments section-->
+<% if(json.data.params != null){ %>
+    <h3 class="section__title">Arguments</h3>
+    <table>
+    <thead>
+        <tr>
+        <th>Arguments</th>
+        <th>Type</th>
+        <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% json.data.params.forEach(function(a) { %>
+        <tr>
+        <td><%= a.arg %></td>
+        <td><%= _.escape(a.type) %></td>
+        <td><%= a.description %></td>
+        </tr>
+        <% }); %>
+    </tbody>
+    </table>
+<%}%>
+``` 
+
+Dans le code ci-dessus, vous pouvez remarquez que nous avons accès, à notre fichier `json`, passé en paramètre du template.
+
+Par exemple `<%= a.arg %>` interprète en `html`, le contenu de la variable arg.
+
+Vous pouvez voir l'utilisation à l'exces des boucles `forEach`, qui permettent la génération de manière simple de notre fichier `html`, sans avoir à se préocupper des balises `HTML` ou du `CSS`.
+
+Cependant, je suis tombé sur un problème, en effet j'ai mis dans des fichiers `.ejs`, les "examples" et les "Algorithm Factorization", car ceux-ci sont assez long, les mettre directement dans le json posserai des problèmes en tout genres.
+
+Normalement en syntaxe `ejs`, nous pouvons facilement importer des `partials`, de la manière suivante:
+```html
+<!-- example Section-->
+<h3 class="section__title">Example</h3>
+...
+<code class="code code--block">
+    <%- include('./parials/examples/pathDistance');  %>
+</code>
+...
+```
+
+Or `html-webpack-plugin` utilise `lodash` comme interpreteur pour nos fichiers `.ejs`, et celui-ci ne connait pas `include`. Cette étape m'as pris énormement de temps pour trouver une solution, en effet l'astuce serait d'utiliser `require`, combiner à un loader html avec webpack.
+
+Définition du loader pour nos fichiers `html` avec `html-loader`:
+```javascript
+module.exports = {
+    ...
+    module: {
+      rules: [
+        ...
+        {
+          test: /\.html$/,
+          loader: 'html-loader'
+        }
+      ],
+    },
+};
+```
+
+Maintenant dans notre fichier `.ejs`, nous pouvons utilisé des requires avec des fichiers `html`.
+```html
+<!-- example Section-->
+<h3 class="section__title">Example</h3>
+...
+<code class="code code--block">
+    <%= require('./parials/examples/pathDistance.html').default  %>
+</code>
+...
+```
+
+Sauf que nous voulons faire ça dynamiquement, hors il est impossible d'injecter une variable dans un `require`, là aussi l'astuce consiste à faire croire au compilateur qu'il s'agit d'une constante.
+
+```html
+<!-- example Section-->
+<h3 class="section__title">Example</h3>
+...
+<code class="code code--block">
+    <%= require('./partials/examples/'+json.data.example+'.html').default  %>
+</code>
+...
+```
+Je procède de la même façon avec la section de l'algorithm Factorization.
+
+Pour résumer, l'`ejs` est très pratique pour l'écriture d'`HTML`, mais peux rapidement des gros problèmes avec d'autres plugins, mais bien calibré celà est très puissant.
+
+
+
