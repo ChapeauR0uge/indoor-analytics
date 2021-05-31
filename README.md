@@ -1,5 +1,15 @@
 # Indoor Analytics Documentation Website
 
+Réaliser dans le cadre du PJI 2021 du Master Informatique de l'Université de Lille.
+
+Website deployé à l'adresse suivante:
+
+https://chapeaur0uge.github.io/indoor-analytics/
+
+Github de la bibliothèque `indoor-analytics`:
+
+https://github.com/indoor-analytics
+
 
 ## Technologies
 
@@ -11,7 +21,9 @@
 
 * **DEVELOPPEMENT**:
     * `Webpack v5` pour la bundlelisation de tout nos fichier css + html + js.
-    * Le plugin `css-loader` et `style-loader` pour une bundlelisation des fichiers CSS.
+    * Le plugin `mini-css-extract-plugin` et `style-loader` pour une bundlelisation des fichiers CSS.
+    * Le plugin `html-loader` et `html-webpack-plugin` pour la génération dynamique de nos pages web.
+    * Le plugin `svg-url-loader` pour la bundlelisation des nos images SVG.
 
 ## Description :
 
@@ -131,6 +143,6 @@ Format des informations de nos fonctions et/ou classes dans le fichier `lib.json
         "af": "" // Nim du fichier qui contient la description de l'Algorithme Factorization, fichier se trouvant dans ./view/partials/af/<nom_fichier_example>.html
       }
 ```
-* Il ne faut bien sur pas oublier de documenter, les méthodes des classes, pour ce faire il suffit d'utiliser, le json à la suite du json de la classe.
+* Il ne faut bien sur pas oublier de documenter, les méthodes des classes, pour ce faire il suffit d'utiliser le json à la suite du json de la classe (voir `lib.json`).
 
 Ces données sont ensuites transmises à notre template `.ejs`.
