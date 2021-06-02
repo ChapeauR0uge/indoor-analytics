@@ -188,11 +188,11 @@ Dans ce package, j'ai la fonction `randomPath`, qui me renvoie un path aléatoir
 2. Dans `./partials/examples` ajout d'un fichier `randomPath.html` :
 
 ```html
-import {examplePath} from '@indoor-analytics/example-path';<br>
+import { randomPath } from '@indoor-analytics/random-path';<br>
 <br>
 const zoi = "euratechZoi";<br>
 <br>                    
-const path = pathExample(zoi);
+const path = randomPath(zoi);
 <br>
 ``` 
 3. Éventuellement je peux faire la même chose avec l'Algorithm Factorization dans `./view/partials/af`. (mais pas pour l'exemple)
@@ -215,8 +215,8 @@ mapboxgl.accessToken = token;
  */
 export default class RandomPathMap {
     /**
-     * Constructor of PathDistanceMap
-     * @param {object} {} - referencePath - comparedPath - centerPosition
+     * Constructor of randomPathMap
+     * @param {object} {} - zoneOfInterest - centerPosition
      */
     constructor(
         { 
@@ -327,7 +327,7 @@ export function newCurrentMap(arg) {
         }).getMap();
     }else if("randomPath" === arg){ // -----HERE--- 
         currentMap.remove(); // Removing old map
-        currentMap = new randomTreeMap({
+        currentMap = new RandomPathMap({
             zoi: euratechZoi,
             center: euratechPos
         }).getMap();
@@ -337,7 +337,7 @@ export function newCurrentMap(arg) {
 }
 ``` 
 
-1. Lancement du mode production
+6. Lancement du mode production
 ```bash
 $ npm run build
 ```
