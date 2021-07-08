@@ -1,7 +1,5 @@
 # Indoor Analytics Documentation Website
 
-Réaliser dans le cadre du PJI 2021 du Master Informatique de l'Université de Lille.
-
 Website déployé à l'adresse suivante:
 
 https://chapeaur0uge.github.io/indoor-analytics/
